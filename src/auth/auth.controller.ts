@@ -1,11 +1,18 @@
-import { Controller,  Request, UseGuards, Post, Get } from '@nestjs/common';
+import { Controller, Request, UseGuards, Post, Get, StreamableFile, Res } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
+import { FileService } from 'src/file/file.service';
+import { createReadStream } from 'fs';
+import { join } from 'path';
+import type { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private authService: AuthService) {}
+    constructor(
+      private authService: AuthService,
+      private fileService: FileService
+      ) {}
     @UseGuards(LocalAuthGuard)
     @Post('login')
     async login(@Request() req){
@@ -14,8 +21,15 @@ export class AuthController {
 
 
     @UseGuards(JwtAuthGuard)
-    @Get('profile')
-    getProfile(@Request() req){
-      return req.user;
-    }
+    @Get('file')
+    async getFile() {
+      const csvFilePath = 'appstore_544007664.csv';
+      const csv = require('csvtojson');
+      csv()
+      .fromFile(csvFilePath)
+      .then((jsonObj)=>{
+          console.log(jsonObj);
+    })
+    const jsonArray=await csv().fromFile(csvFilePath);
+  }
 }
