@@ -8,12 +8,11 @@ import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy'; // added
-import { FileService } from 'src/file/file.service';
 
 @Module({
   imports: [
     UsersModule, 
-    PassportModule,  
+    PassportModule,       // 어디에 쓰이는지 알아봐야함
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {expiresIn: '600s'},
@@ -21,6 +20,6 @@ import { FileService } from 'src/file/file.service';
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService]
+  exports: [AuthService] // 어디에 쓰이는지 알아봐야함
 })
 export class AuthModule {}
