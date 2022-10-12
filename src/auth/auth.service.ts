@@ -28,14 +28,6 @@ export class AuthService {
 
   async signup(user: User) {
     const new_user = await this.usersService.create(user);
-    console.log('done');
-    return user;
-
-    //const payload = { username: user.username, password: user.password, };
-    
-
-    // return {
-    //   access_token: this.jwtService.sign(payload),
-    // };
+    return user.email;
   }
 }
