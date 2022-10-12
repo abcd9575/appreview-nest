@@ -61,6 +61,7 @@ export class UsersService {
           await queryRunner.commitTransaction();
           console.log('commit Transaction');
         } catch (err) {
+          console.log(err)
           console.log('catch(err)');
           // since we have errors lets rollback the changes we made
           await queryRunner.rollbackTransaction();

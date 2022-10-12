@@ -26,6 +26,8 @@ import { User } from './users/user.entity';
       database: 'appreview',
       entities: [User], //To begin using the User entity, we need to let TypeORM know about it by inserting it into the entities array in the module forRoot() method options (unless you use a static glob path):
       synchronize: true,
+      autoLoadEntities: true,
+
     })],
   //providers: [AppService],
 })
