@@ -12,7 +12,7 @@ export class ReviewController {
         return this.reviewService.review();    
     }
     
-    @UseGuards(JwtAuthGuard)
+    //@UseGuards(JwtAuthGuard)
     @Get('db')
     async review_db() {
         return this.reviewService.review_db();
