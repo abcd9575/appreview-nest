@@ -14,15 +14,11 @@ export class ReviewService {
     async review() {
         const csvFilePath = 'appstore_544007664.csv';
         const csv = require('csvtojson');
-        csv()
-            .fromFile(csvFilePath)
-            .then((jsonObj) => {
-                //console.log(jsonObj);
-            })
         const jsonArray = await csv().fromFile(csvFilePath);
         return jsonArray;
     }
-    review_db(): Promise<Review[]> {
+
+    async review_db(): Promise<Review[]> {
         return this.reviewRepository.find();
     }
 }

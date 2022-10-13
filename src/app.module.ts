@@ -17,8 +17,6 @@ import { databases } from './config/databases';
 // };
 
 @Module({
-  //imports: [AuthModule, UsersModule],
-  //controllers: [AuthController],
   imports: [AuthModule, 
     ReviewModule, 
     ConfigModule.forRoot({isGlobal: true}),
@@ -27,32 +25,6 @@ import { databases } from './config/databases';
       inject: [ConfigService],                 
       useFactory: async (configService: ConfigService) =>  
         databases.mysql(configService),
-      
-      
-        
-    }),
-    //TypeOrmModule.forFeature([User]),
-    //TypeOrmModule.forFeature([Comment]),
-
-
-
-
-
-
-    // TypeOrmModule.forRoot({
-    //   ...defaultOptions,
-    //   type: 'mysql',
-    //   entities: [User], //To begin using the User entity, we need to let TypeORM know about it by inserting it into the entities array in the module forRoot() method options (unless you use a static glob path):
-    // }),
-    // TypeOrmModule.forRoot({
-    //   ...defaultOptions,
-    //   type: 'mysql',
-    //   entities: [Comment], //To begin using the User entity, we need to let TypeORM know about it by inserting it into the entities array in the module forRoot() method options (unless you use a static glob path):
-    // })
-  ],
-    
-  //providers: [AppService],
+    })],
 })
-export class AppModule {
-  constructor(private dataSource: DataSource) {}
-}
+export class AppModule {}

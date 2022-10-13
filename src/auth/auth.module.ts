@@ -13,7 +13,7 @@ import { JwtStrategy } from './jwt.strategy'; // added
 @Module({
   imports: [
     UsersModule, 
-    PassportModule,       // 어디에 쓰이는지 알아봐야함
+    PassportModule,       
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {expiresIn: '600s'},
@@ -21,6 +21,6 @@ import { JwtStrategy } from './jwt.strategy'; // added
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService] // 어디에 쓰이는지 알아봐야함
+  exports: [AuthService] 
 })
 export class AuthModule {}
