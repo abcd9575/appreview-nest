@@ -8,19 +8,19 @@ import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy'; // added
-import { FileService } from 'src/file/file.service';
+
 
 @Module({
   imports: [
     UsersModule, 
-    PassportModule,  
+    PassportModule,       
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {expiresIn: '600s'},
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy, FileService],
-  exports: [AuthService]
+  providers: [AuthService, LocalStrategy, JwtStrategy],
+  exports: [AuthService] 
 })
 export class AuthModule {}
