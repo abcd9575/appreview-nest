@@ -8,35 +8,19 @@ import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy'; // added
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/users/user.entity';
-import { DataSource } from 'typeorm';
+
 
 @Module({
   imports: [
     UsersModule, 
-    PassportModule,       // 어디에 쓰이는지 알아봐야함
+    PassportModule,       
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {expiresIn: '600s'},
     }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '1q2w3e$R',
-      database: 'appreview',
-      entities: [User], //To begin using the User entity, we need to let TypeORM know about it by inserting it into the entities array in the module forRoot() method options (unless you use a static glob path):
-      synchronize: true,
-      autoLoadEntities: true,
-
-    })
   ],
   controllers: [AuthController],
   providers: [AuthService, LocalStrategy, JwtStrategy],
-  exports: [AuthService] // 어디에 쓰이는지 알아봐야함
+  exports: [AuthService] 
 })
-export class AuthModule {
-  constructor(private dataSource: DataSource) {}
-}
+export class AuthModule {}
