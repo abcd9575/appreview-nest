@@ -22,5 +22,14 @@ export class Review {
 
   @Column()
   review: string;
+
+  @Column()
+  app_id: string;
+
+  @Column()
+  app_name: string;
+
+  @Column()
+  OS: string;
 }
 // export const CommentSchema = SchemaFactory.createForClass(Comment);
