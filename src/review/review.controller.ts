@@ -4,17 +4,17 @@ import { ReviewService } from './review.service';
 
 @Controller('review')
 export class ReviewController {
-    constructor( private reviewService: ReviewService ) {}
+  constructor(private reviewService: ReviewService) {}
 
-    @UseGuards(JwtAuthGuard)
-    @Get('file')
-    async review() {
-        return this.reviewService.review();    
-    }
-    
-    @UseGuards(JwtAuthGuard)
-    @Get('db')
-    async review_db() {
-        return this.reviewService.review_db();
-    }
+  @UseGuards(JwtAuthGuard)
+  @Get('file')
+  async review() {
+    return this.reviewService.review();
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('db')
+  async review_db() {
+    return this.reviewService.review_db();
+  }
 }
