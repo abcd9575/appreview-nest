@@ -7,11 +7,11 @@ export class Review {
 
   @Column()
   username: string;
-  
+
   @Column()
   date: string;
 
-  @Column({type : "int", width: 5})
+  @Column({ type: 'int', width: 5 })
   star: number;
 
   @Column()
@@ -22,6 +22,5 @@ export class Review {
 
   @Column()
   review: string;
-  
 }
 // export const CommentSchema = SchemaFactory.createForClass(Comment);
