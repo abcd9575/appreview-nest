@@ -1,13 +1,4 @@
-import {
-  Controller,
-  Request,
-  UseGuards,
-  Post,
-  Get,
-  StreamableFile,
-  Res,
-  Body,
-} from '@nestjs/common';
+import { Controller, Request, UseGuards, Post, Body } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { User } from 'src/users/user.entity';
