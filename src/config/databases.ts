@@ -22,6 +22,6 @@ const mysql = (configService: ConfigService): TypeOrmModuleOptions => ({
 });
 
 export const databases = {
-//   sqlite,
+  //   sqlite,
   mysql,
 };
