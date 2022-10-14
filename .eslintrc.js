@@ -17,9 +17,12 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'linebreak-style': 0, // https://ddeck.tistory.com/48 모든 개행문자를 CRLF에서 LF스타일로 변경시켜주는 rule
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
   },
+
+  
 };
