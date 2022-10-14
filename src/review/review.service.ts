@@ -13,6 +13,7 @@ export class ReviewService {
 
   async review() {
     const csvFilePath = 'appstore_544007664.csv';
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const csv = require('csvtojson');
     const jsonArray = await csv().fromFile(csvFilePath);
     return jsonArray;
