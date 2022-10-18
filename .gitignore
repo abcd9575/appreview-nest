@@ -37,6 +37,7 @@ lerna-debug.log*
 # env
 .env
 .env.dev
+.env.local
 
 # DataFolder
 appstore_544007664.csv
