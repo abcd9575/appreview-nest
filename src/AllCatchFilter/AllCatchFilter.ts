@@ -13,7 +13,6 @@ import { Logger as WinstonLogger } from 'winston';
 
 @Catch()
 export class AllCatchFilter implements ExceptionFilter {
-  //  constructor(private logger: Logger) {}
   constructor(
     @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: WinstonLogger,
   ) {}
@@ -35,6 +34,7 @@ export class AllCatchFilter implements ExceptionFilter {
     };
 
     console.log(log);
+    this.logger.error(log);
     this.logger.error(exception.stack);
     res.status((exception as HttpException).getStatus()).json(response);
   }
