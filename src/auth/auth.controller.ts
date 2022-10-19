@@ -2,15 +2,20 @@ import {
   Controller,
   Request,
   UseGuards,
+  Get,
   Post,
   Body,
   Inject,
+  UseFilters,
 } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { User } from 'src/users/user.entity';
 import { Logger as WinstonLogger } from 'winston';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+
+import { InternalServerErrorException } from '@nestjs/common';
+import { AllCatchFilter } from 'src/AllCatchFilter/AllCatchFilter';
 
 @Controller('auth')
 export class AuthController {
@@ -30,6 +35,13 @@ export class AuthController {
   async signup(@Body() user: User) {
     this.printWinstonLog(user); //console.log(req);
     return this.authService.signup(user);
+  }
+
+  @Get()
+  @UseFilters(AllCatchFilter)
+  error(foo: any): string {
+    this.printWinstonLog('error'); //console.log(req);
+    return foo.bar();
   }
 
   private printWinstonLog(req) {

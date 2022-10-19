@@ -8,7 +8,9 @@ import * as winston from 'winston';
 import { utilities, WinstonModule } from 'nest-winston';
 import * as winstonDailyRotateFile from 'winston-daily-rotate-file';
 import { dailyOptions } from './utils/logger';
-
+import { AllCatchFilter } from './AllCatchFilter/AllCatchFilter';
+import { APP_FILTER } from '@nestjs/core';
+import { AllCatchModule } from './AllCatchFilter/AllCatchModule';
 // const defaultOptions = {
 //   host: 'localhost',
 //   port: 3306,
@@ -21,6 +23,7 @@ import { dailyOptions } from './utils/logger';
 
 @Module({
   imports: [
+    AllCatchModule,
     AuthModule,
     ReviewModule,
     ConfigModule.forRoot({
@@ -48,6 +51,13 @@ import { dailyOptions } from './utils/logger';
         new winstonDailyRotateFile(dailyOptions()),
       ],
     }),
+    AllCatchModule,
+  ],
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllCatchFilter,
+    },
   ],
 })
 export class AppModule {}
