@@ -7,7 +7,6 @@ import { databases } from './config/databases';
 import * as winston from 'winston';
 import { utilities, WinstonModule } from 'nest-winston';
 import * as winstonDailyRotateFile from 'winston-daily-rotate-file';
-import { DailyRotateFileTransportOptions } from 'winston-daily-rotate-file';
 import { dailyOptions } from './utils/logger';
 
 // const defaultOptions = {
