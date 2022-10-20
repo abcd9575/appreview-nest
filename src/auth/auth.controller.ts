@@ -18,7 +18,7 @@ import { AuthService } from './auth.service';
 import { User } from 'src/users/user.entity';
 import { Logger as WinstonLogger } from 'winston';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
-
+import { saveImageToStorage } from '../helpers/image-storage';
 import { InternalServerErrorException } from '@nestjs/common';
 import { AllCatchFilter } from 'src/AllCatchFilter/AllCatchFilter';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -51,7 +51,7 @@ export class AuthController {
   }
 
   @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
+  @UseInterceptors(FileInterceptor('file', saveImageToStorage))
   uploadFile(
     @UploadedFile(
       new ParseFilePipe({
@@ -62,7 +62,9 @@ export class AuthController {
       }),
     )
     file: Express.Multer.File,
-  ) {
+    @Request() req,
+  ): any {
+    //create= file.originalname
     console.log(file);
   }
 
