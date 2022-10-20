@@ -64,8 +64,12 @@ export class AuthController {
     file: Express.Multer.File,
     @Request() req,
   ): any {
-    //create= file.originalname
     console.log(file);
+    return this.authService.updateProfile({
+      id: null,
+      originalName: file.originalname,
+      uuid: file.filename,
+    });
   }
 
   private printWinstonLog(req) {

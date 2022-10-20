@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Profile {
+export class File {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -11,6 +11,6 @@ export class Profile {
   @Column()
   uuid: string;
 
-  @Column()
-  email: string;
+  // @Column()
+  // email: string;
 }

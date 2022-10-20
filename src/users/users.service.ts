@@ -2,7 +2,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Entity, Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { User } from './user.entity';
-import { Profile } from '../profiles/profile.entity';
 
 //export type User = any;
 
@@ -13,23 +12,6 @@ export class UsersService {
     private usersRepository: Repository<User>,
     private dataSource: DataSource,
   ) {}
-
-  async createProfile(profile: Profile) {
-    const profileData = this.usersRepository.create(profile);
-    const queryRunner = this.dataSource.createQueryRunner();
-    await queryRunner.connect();
-    await queryRunner.startTransaction();
-    try {
-      await queryRunner.manager.save(profileData);
-      await queryRunner.commitTransaction();
-    } catch (err) {
-      // since we have errors lets rollback the changes we made
-      await queryRunner.rollbackTransaction();
-    } finally {
-      // you need to release a queryRunner which was manually instantiated
-      await queryRunner.release();
-    }
-  }
 
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
