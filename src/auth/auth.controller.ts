@@ -2,15 +2,18 @@ import {
   Controller,
   Request,
   UseGuards,
+  Get,
   Post,
   Body,
   Inject,
+  UseFilters,
 } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { User } from 'src/users/user.entity';
 import { Logger as WinstonLogger } from 'winston';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { AllCatchFilter } from 'src/AllCatchFilter/AllCatchFilter';
 
 @Controller('auth')
 export class AuthController {
@@ -32,15 +35,22 @@ export class AuthController {
     return this.authService.signup(user);
   }
 
-  private printWinstonLog(param) {
+  @Get()
+  @UseFilters(AllCatchFilter)
+  error(foo: any): string {
+    this.printWinstonLog('error'); //console.log(req);
+    return foo.bar();
+  }
+
+  private printWinstonLog(req) {
     //console.log(this.logger.info);
 
-    //this.logger.error('error: ', param);
-    //this.logger.warn('warn: ', param);
-    this.logger.info('info: ', param);
-    //this.logger.http('http: ', param);
-    //this.logger.verbose('verbose: ', param);
-    //this.logger.debug('debug: ', param);
-    //this.logger.silly('silly: ', param);
+    //this.logger.error('error: ', req);
+    //this.logger.warn('warn: ', req);
+    this.logger.info('info: ', req);
+    //this.logger.http('http: ', req);
+    //this.logger.verbose('verbose: ', req);
+    //this.logger.debug('debug: ', req);
+    //this.logger.silly('silly: ', req);
   }
 }
