@@ -31,6 +31,7 @@ export class FilesController {
     @Request() req,
   ): any {
     console.log(file);
+    return file;
   }
 
   @Post('DBupload')
@@ -48,11 +49,14 @@ export class FilesController {
     @Request() req,
   ): any {
     console.log(file);
-    return this.filesService.createFile({
-      id: null,
-      originalName: file.originalname,
-      uuid: file.filename,
-      filePath: file.path,
-    });
+    return (
+      this.filesService.createFile({
+        id: null,
+        originalName: file.originalname,
+        uuid: file.filename,
+        filePath: file.path,
+      }),
+      file
+    );
   }
 }
