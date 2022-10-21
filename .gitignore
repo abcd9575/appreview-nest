@@ -42,3 +42,6 @@ lerna-debug.log*
 # DataFolder
 appstore_544007664.csv
 
+#storage
+/storage
+
