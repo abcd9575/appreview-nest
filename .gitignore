@@ -43,5 +43,5 @@ lerna-debug.log*
 appstore_544007664.csv
 
 #storage
-/storage
+storage/**/*
 

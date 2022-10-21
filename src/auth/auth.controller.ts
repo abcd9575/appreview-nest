@@ -13,8 +13,6 @@ import { AuthService } from './auth.service';
 import { User } from 'src/users/user.entity';
 import { Logger as WinstonLogger } from 'winston';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
-
-import { InternalServerErrorException } from '@nestjs/common';
 import { AllCatchFilter } from 'src/AllCatchFilter/AllCatchFilter';
 
 @Controller('auth')
