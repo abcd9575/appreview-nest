@@ -7,21 +7,13 @@ import {
   Body,
   Inject,
   UseFilters,
-  UseInterceptors,
-  UploadedFile,
-  ParseFilePipe,
-  MaxFileSizeValidator,
-  FileTypeValidator,
 } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
 import { User } from 'src/users/user.entity';
 import { Logger as WinstonLogger } from 'winston';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
-import { saveImageToStorage } from '../helpers/image-storage';
-import { InternalServerErrorException } from '@nestjs/common';
 import { AllCatchFilter } from 'src/AllCatchFilter/AllCatchFilter';
-import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')
 export class AuthController {
@@ -48,28 +40,6 @@ export class AuthController {
   error(foo: any): string {
     this.printWinstonLog('error'); //console.log(req);
     return foo.bar();
-  }
-
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file', saveImageToStorage))
-  uploadFile(
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [
-          new MaxFileSizeValidator({ maxSize: 5000000 }),
-          new FileTypeValidator({ fileType: 'jpeg' }),
-        ],
-      }),
-    )
-    file: Express.Multer.File,
-    @Request() req,
-  ): any {
-    console.log(file);
-    return this.authService.updateFile({
-      id: null,
-      originalName: file.originalname,
-      uuid: file.filename,
-    });
   }
 
   private printWinstonLog(req) {

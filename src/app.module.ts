@@ -10,6 +10,7 @@ import * as winstonDailyRotateFile from 'winston-daily-rotate-file';
 import { dailyOptions } from './utils/logger';
 import { AllCatchFilter } from './AllCatchFilter/AllCatchFilter';
 import { APP_FILTER } from '@nestjs/core';
+import { FilesModule } from './files/files.module';
 // const defaultOptions = {
 //   host: 'localhost',
 //   port: 3306,
@@ -24,6 +25,7 @@ import { APP_FILTER } from '@nestjs/core';
   imports: [
     AuthModule,
     ReviewModule,
+    FilesModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: `.env.${process.env.NODE_ENV}`,

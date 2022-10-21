@@ -11,6 +11,9 @@ export class File {
   @Column()
   uuid: string;
 
+  @Column()
+  filePath: string;
+
   // @Column()
   // email: string;
 }
