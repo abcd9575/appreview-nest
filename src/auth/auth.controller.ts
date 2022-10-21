@@ -65,7 +65,7 @@ export class AuthController {
     @Request() req,
   ): any {
     console.log(file);
-    return this.authService.updateProfile({
+    return this.authService.updateFile({
       id: null,
       originalName: file.originalname,
       uuid: file.filename,

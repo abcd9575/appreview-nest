@@ -8,4 +8,4 @@ import { FilesService } from './files.service';
   providers: [FilesService],
   exports: [FilesService, TypeOrmModule],
 })
-export class ProfileModule {}
+export class FileModule {}

@@ -7,7 +7,7 @@ import { File } from './file.entity';
 export class FilesService {
   constructor(
     @InjectRepository(File)
-    private profileRepository: Repository<File>,
+    private fileRepository: Repository<File>,
     private dataSource: DataSource,
   ) {}
 
@@ -18,13 +18,13 @@ export class FilesService {
   //   getUuidImgName(email: string) {
   //     return this.profileRepository.findOneBy({ email });
   //   }
-  async createFile(profile: File) {
-    const profileData = this.profileRepository.create(profile);
+  async createFile(file: File) {
+    const fileData = this.fileRepository.create(file);
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {
-      await queryRunner.manager.save(profileData);
+      await queryRunner.manager.save(fileData);
       await queryRunner.commitTransaction();
     } catch (err) {
       // since we have errors lets rollback the changes we made
