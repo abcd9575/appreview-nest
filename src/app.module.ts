@@ -11,7 +11,6 @@ import { dailyOptions } from './utils/logger';
 import { AllCatchFilter } from './AllCatchFilter/AllCatchFilter';
 import { APP_FILTER } from '@nestjs/core';
 import { FilesModule } from './files/files.module';
-import { FileServiceService } from './file-service/file-service.service';
 // const defaultOptions = {
 //   host: 'localhost',
 //   port: 3306,
@@ -58,7 +57,6 @@ import { FileServiceService } from './file-service/file-service.service';
       provide: APP_FILTER,
       useClass: AllCatchFilter,
     },
-    FileServiceService,
   ],
 })
 export class AppModule {}
