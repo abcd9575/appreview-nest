@@ -2,6 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { File } from './file.entity';
+import path = require('path');
+import { diskStorage } from 'multer';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class FilesService {
@@ -34,4 +37,27 @@ export class FilesService {
       await queryRunner.release();
     }
   }
+
+  makeFile = (fileExtension) => {
+    const date = new Date(Date.now()).toDateString();
+    const fileName = date + fileExtension;
+    return fileName;
+  };
 }
+
+export const saveImageToStorage = {
+  storage: diskStorage({
+    destination: './storage/uploads',
+    filename: (req, file, cb) => {
+      const fileExtension: string = path.extname(file.originalname);
+      const fileName: string = makeFile(fileExtension);
+      cb(null, fileName);
+    },
+  }),
+};
+
+const makeFile = (fileExtension) => {
+  const today = Date.now().toString();
+  const fileName = uuid() + '_' + today + fileExtension;
+  return fileName;
+};

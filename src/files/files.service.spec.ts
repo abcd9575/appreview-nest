@@ -2,17 +2,20 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { FilesService } from './files.service';
 
 describe('FileServiceService', () => {
-  let service: FilesService;
+  let filesService: FilesService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [FilesService],
-    }).compile();
-
-    service = module.get<FilesService>(FilesService);
+    // const module: TestingModule = await Test.createTestingModule({
+    //   providers: [FilesService],
+    // }).compile();
+    // filesService = module.get<FilesService>(FilesService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
+  // describe('makefile', () => {
+  //   it('should return "File name"', () => {
+  //     expect(filesService.makeFile('.jpg')).toBe(
+  //       new Date(Date.now()).toDateString() + '.jpg',
+  //     );
+  //   });
+  // });
 });
