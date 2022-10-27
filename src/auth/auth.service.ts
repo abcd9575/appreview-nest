@@ -27,7 +27,8 @@ export class AuthService {
   }
 
   async signup(user: User) {
-    const new_user = await this.usersService.create(user);
+    // 유저 비밀번호 암호화 로직 구현.
+    await this.usersService.create(user);
     return user.email;
   }
 }
