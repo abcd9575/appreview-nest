@@ -33,7 +33,7 @@ export class UsersService {
   }
 
   async create(user: User) {
-    this.save(user);
+    await PwTransformer(user);
     const userData = this.usersRepository.create(user);
     const queryRunner = this.dataSource.createQueryRunner();
 
