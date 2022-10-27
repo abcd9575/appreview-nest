@@ -8,7 +8,7 @@ export class User {
   @Column()
   email: string;
 
-  @Column()
+  @Column() // 암호화.
   password: string;
 
   @Column({ default: true })

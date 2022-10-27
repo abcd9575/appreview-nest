@@ -2,6 +2,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Entity, Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 import { User } from './user.entity';
+import { PwTransformer } from 'src/utils/PwTransformer';
 
 //export type User = any;
 
@@ -27,8 +28,10 @@ export class UsersService {
   }
 
   async create(user: User) {
+    await PwTransformer(user);
     const userData = this.usersRepository.create(user);
     const queryRunner = this.dataSource.createQueryRunner();
+
     await queryRunner.connect();
     await queryRunner.startTransaction();
     try {

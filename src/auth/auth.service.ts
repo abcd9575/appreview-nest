@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/user.entity';
+import { PwCompare } from 'src/utils/PwTransformer';
 
 @Injectable()
 export class AuthService {
@@ -12,11 +13,11 @@ export class AuthService {
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne(username);
-    if (user && user.password === pass) {
+    if (PwCompare(pass, user)) {
       const { password, ...result } = user;
       return result;
     }
-    return null;
+    return new UnauthorizedException();
   }
 
   async login(user: any) {
@@ -27,7 +28,8 @@ export class AuthService {
   }
 
   async signup(user: User) {
-    const new_user = await this.usersService.create(user);
+    // 유저 비밀번호 암호화 로직 구현.
+    await this.usersService.create(user);
     return user.email;
   }
 }
