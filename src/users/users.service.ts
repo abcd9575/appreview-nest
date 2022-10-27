@@ -29,7 +29,6 @@ export class UsersService {
 
   async save(user: User): Promise<User | undefined> {
     await PwTransformer(user);
-    console.log(user);
     return await this.usersRepository.save(user);
   }
 
