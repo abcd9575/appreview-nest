@@ -27,11 +27,6 @@ export class UsersService {
     await this.usersRepository.delete(id);
   }
 
-  async save(user: User): Promise<User | undefined> {
-    await PwTransformer(user);
-    return await this.usersRepository.save(user);
-  }
-
   async create(user: User) {
     await PwTransformer(user);
     const userData = this.usersRepository.create(user);
