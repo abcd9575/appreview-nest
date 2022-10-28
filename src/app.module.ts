@@ -11,6 +11,7 @@ import { dailyOptions } from './utils/logger';
 import { AllCatchFilter } from './AllCatchFilter/AllCatchFilter';
 import { APP_FILTER } from '@nestjs/core';
 import { FilesModule } from './files/files.module';
+import { MoappModule } from './moapp/moapp.module';
 // const defaultOptions = {
 //   host: 'localhost',
 //   port: 3306,
@@ -51,6 +52,7 @@ import { FilesModule } from './files/files.module';
         new winstonDailyRotateFile(dailyOptions()),
       ],
     }),
+    MoappModule,
   ],
   providers: [
     {
