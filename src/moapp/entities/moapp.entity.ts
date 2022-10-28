@@ -1,16 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class User {
+export class Moapp {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  email: string;
+  app_id: string;
 
-  @Column() // 암호화.
-  password: string;
+  @Column()
+  app_name: string;
 
-  @Column({ default: true })
-  isActive: boolean;
+  @Column()
+  OS: string;
 }

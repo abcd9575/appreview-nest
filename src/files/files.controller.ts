@@ -9,7 +9,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { saveImageToStorage } from 'src/helpers/image-storage';
+import { saveImageToStorage } from './files.service';
 import { FilesService } from './files.service';
 
 @Controller('files')

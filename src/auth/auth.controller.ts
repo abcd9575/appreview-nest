@@ -22,7 +22,7 @@ export class AuthController {
     private authService: AuthService,
   ) {}
 
-  @UseGuards(LocalAuthGuard)
+  //@UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Request() req) {
     this.printWinstonLog(req.user); //console.log(req);
