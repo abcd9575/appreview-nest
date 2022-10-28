@@ -1,15 +1,24 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateMoappDto } from './dto/create-moapp.dto';
 import { UpdateMoappDto } from './dto/update-moapp.dto';
+import { Moapp } from './entities/moapp.entity';
 
 @Injectable()
 export class MoappService {
+  constructor(
+    @InjectRepository(Moapp) private MoappRepository: Repository<Moapp>,
+  ) {
+    this.MoappRepository = MoappRepository;
+  }
+
   create(createMoappDto: CreateMoappDto) {
     return 'This action adds a new moapp';
   }
 
-  findAll() {
-    return `This action returns all moapp`;
+  async findAll()/*: Promise<Moapp[]> */{
+    return this.MoappRepository.find();
   }
 
   findOne(id: number) {

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { MoappService } from './moapp.service';
 import { CreateMoappDto } from './dto/create-moapp.dto';
 import { UpdateMoappDto } from './dto/update-moapp.dto';
@@ -12,7 +20,7 @@ export class MoappController {
     return this.moappService.create(createMoappDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.moappService.findAll();
   }

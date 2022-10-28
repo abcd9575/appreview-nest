@@ -6,13 +6,13 @@ import { ReviewService } from './review.service';
 export class ReviewController {
   constructor(private reviewService: ReviewService) {}
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get('file')
   async review() {
     return this.reviewService.review();
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get('db')
   async review_db() {
     return this.reviewService.review_db();
